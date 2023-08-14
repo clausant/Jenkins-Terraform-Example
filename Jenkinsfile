@@ -5,7 +5,7 @@ pipeline {
     }
     tools
     {
-        ' sh  /usr/local/bin/docker run --rm -v "$(pwd):/src" aquasec/tfsec .' 'Default'
+        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'Default'
         'terraform' 'Default'
     }
     stages {
@@ -32,7 +32,7 @@ pipeline {
 
         stage('terraform') {
             steps {
-                     sh 'terraform init'
+                sh 'terraform init'
                 sh 'terraform apply -auto-approve -no-color'
             }
         }
